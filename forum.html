@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.10/pico.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="forum.html">Forum</a>
+            <a href="explore.html">Explore</a>
+        </div>
+        <div class="nav-links">
+            <!-- This div will be populated by updateNavbar() -->
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Create Post Button -->
+        <div class="create-post-container">
+            <button id="create-post-btn" class="primary-btn">Create New Post</button>
+        </div>
+
+        <!-- Create Post Modal -->
+        <dialog id="post-modal" class="modal">
+            <form id="post-form">
+                <h3>Create New Post</h3>
+                <input type="text" id="post-title" placeholder="Title" required>
+                <textarea id="post-content" placeholder="Content" required></textarea>
+                <input type="text" id="post-tags" placeholder="Tags (comma separated)">
+                <div class="modal-buttons">
+                    <button type="submit">Post</button>
+                    <button type="button" id="close-modal">Cancel</button>
+                </div>
+            </form>
+        </dialog>
+
+        <!-- Posts Container -->
+        <div id="posts-container" class="posts-grid">
+            <!-- Posts will be dynamically inserted here -->
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="forum.js"></script>
+</body>
+</html>

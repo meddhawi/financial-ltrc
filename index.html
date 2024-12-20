@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Using PicoCSS for minimal styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.10/pico.min.css">
+    <!-- ApexCharts CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.1/apexcharts.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="forum.html">Forum</a>
+            <a href="explore.html">Explore</a>
+        </div>
+        <div class="nav-links">
+            <!-- This div will be populated by updateNavbar() -->
+        </div>
+    </nav>
+
+    <!-- Import Data Section -->
+    <main class="container">
+        <div class="import-container">
+            <label for="file-upload" class="upload-label">
+                <span class="import-text">Start Importing Data Here...</span>
+                <input type="file" id="file-upload" accept=".csv">
+            </label>
+        </div>
+
+        <!-- Chart Section (initially hidden) -->
+        <div id="chart-section" class="chart-container hidden">
+            <div id="bar-chart"></div>
+            <div id="pie-chart"></div>
+            <div id="line-chart"></div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.1/apexcharts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="main.js"></script>
+    <script type="module" src="database.js"></script>
+    <script type="module">
+        import { updateNavbar } from './auth.js';
+        // Initialize navbar state
+        updateNavbar();
+    </script>
+</body>
+</html>
