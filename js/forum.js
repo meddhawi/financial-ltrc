@@ -97,12 +97,14 @@ async function loadPosts() {
 function createPostElement(post) {
     const postDiv = document.createElement('div');
     postDiv.className = 'post-card';
+    postDiv.onclick = () => {
+        window.location.href = `forum-post.html?id=${post.id}`;
+    };
     
     const tagsHtml = post.tags
         .map(tag => `<span class="tag">${tag}</span>`)
         .join('');
 
-    // Add a preview of the content (first 100 characters)
     const previewContent = post.content.length > 100 
         ? post.content.substring(0, 100) + '...'
         : post.content;

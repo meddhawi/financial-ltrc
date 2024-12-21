@@ -1,11 +1,9 @@
 // Add proper import for browser environments
 // database.js
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import config from './config.js'
 
-const supabaseUrl = 'https://estepnluwxetvmgooarr.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzdGVwbmx1d3hldHZtZ29vYXJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ2MDk1MDQsImV4cCI6MjA1MDE4NTUwNH0.MlLYPeoOvMdj8Xaao_ctkGsUH6zD0cTj8OK3sd6g4C8'
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = createClient(config.supabaseUrl, config.supabaseAnonKey)
 
 // Export other functions
 export { testConnection, insertData, fetchData }

@@ -2,6 +2,16 @@ body {
     background-color: white;
 }
 
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+    color: black;
+}
+
+
 .navbar {
     background-color: #3c75a7;;
     border-bottom: 1px solid #ddd;
@@ -172,6 +182,7 @@ body {
 }
 
 .post-title {
+    color: black;
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
@@ -236,4 +247,55 @@ main {
     width: 100%;
     padding: 0;
     margin: 0;
+}
+
+.post-detail {
+    background: white;
+    color: black;
+    padding: 2rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.post-metadata {
+    color: #666;
+    margin: 1rem 0;
+}
+
+.comments-section {
+    background: white;
+    color: black;
+    padding: 2rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.comment-form {
+    margin-bottom: 2rem;
+}
+
+.comment {
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+}
+
+.comment-metadata {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.comment-content {
+    line-height: 1.5;
+}
+
+.post-card {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
 }
