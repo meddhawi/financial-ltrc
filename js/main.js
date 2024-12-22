@@ -36,7 +36,14 @@ function handleCSV(file) {
                 console.error('CSV parsing errors:', results.errors);
                 return;
             }
-            processData(results.data);
+            // Map the data to exclude Timestamp column
+            const cleanedData = results.data.map(row => ({
+                time: row.time,
+                type: row.type,
+                category: row.category,
+                amount: row.amount
+            }));
+            processData(cleanedData);
         }
     });
 }
@@ -80,29 +87,37 @@ function handleExcel(file) {
 
             // Clean and validate the data
             const cleanData = jsonData.map((row, index) => {
+                // Only keep required fields and validate them
+                const cleanRow = {
+                    time: row.time,
+                    type: row.type,
+                    category: row.category,
+                    amount: row.amount
+                };
+
                 // Validate time format
-                const timestamp = new Date(row.time);
+                const timestamp = new Date(cleanRow.time);
                 if (isNaN(timestamp.getTime())) {
                     console.warn(`Invalid date format at row ${index + 1}, using current date`);
-                    row.time = new Date().toISOString();
+                    cleanRow.time = new Date().toISOString();
                 }
 
                 // Validate type
-                if (!['input', 'output'].includes(row.type?.toLowerCase())) {
+                if (!['input', 'output'].includes(cleanRow.type?.toLowerCase())) {
                     console.warn(`Invalid type at row ${index + 1}, defaulting to "output"`);
-                    row.type = 'output';
+                    cleanRow.type = 'output';
                 }
 
                 // Validate amount (convert to number and handle currency formats)
-                const amount = parseFloat(String(row.amount).replace(/[^0-9.-]+/g, ''));
+                const amount = parseFloat(String(cleanRow.amount).replace(/[^0-9.-]+/g, ''));
                 if (isNaN(amount)) {
                     console.warn(`Invalid amount at row ${index + 1}, defaulting to 0`);
-                    row.amount = 0;
+                    cleanRow.amount = 0;
                 } else {
-                    row.amount = amount;
+                    cleanRow.amount = amount;
                 }
 
-                return row;
+                return cleanRow;
             });
 
             processData(cleanData);
